@@ -2,7 +2,7 @@
     "name": "smolblog/tempest-psr",
     "description": "Initializers for using Tempest infrastructure with PSR-compatible packages.",
     "type": "library",
-    "version": "0.1.0",
+    "version": "0.1.0-dev",
     "require": {
         "tempest/discovery": "^1.5",
         "psr/container": "^2.0",

@@ -25,4 +25,5 @@ Maps `Tempest\Container\Container` to `Psr\Container\ContainerInterface`.
 
 ## Meta
 
-Written by Evan Hildreth for the Smolblog project. Licensed under the MIT license to align with Tempest.
+Written by Evan Hildreth for the Smolblog project. Licensed under the MIT license to align with Tempest. All your base
+are belong to us.
