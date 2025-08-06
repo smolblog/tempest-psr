@@ -10,10 +10,20 @@
         "psr/log": "^3.0",
         "tempest/container": "^1.5"
     },
+    "require-dev": {
+        "tempest/framework": "*",
+        "psr-discovery/http-factory-implementations": "@dev",
+        "phpunit/phpunit": "^12.3"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
             "Smolblog\\TempestPsr\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Smolblog\\TempestPsr\\Test\\": "tests/discovered/"
         }
     },
     "authors": [
@@ -21,5 +31,9 @@
             "name": "Evan Hildreth",
             "email": "me@eph.me"
         }
-    ]
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "testdox": "phpunit --testdox"
+    }
 }

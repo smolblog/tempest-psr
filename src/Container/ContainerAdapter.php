@@ -7,6 +7,7 @@ use Tempest\Container\Autowire;
 use Tempest\Container\Container;
 use Tempest\Container\Exceptions\ContainerException;
 use Tempest\Container\Exceptions\DependencyCouldNotBeInstantiated;
+use Throwable;
 
 #[Autowire]
 class ContainerAdapter implements ContainerInterface {
@@ -24,7 +25,8 @@ class ContainerAdapter implements ContainerInterface {
 	 * @return bool
 	 */
 	public function has(string $id): bool {
-		return $this->container->has($id);
+		// Account for autowired classes without a formal definition.
+		return $this->container->has($id) || class_exists($id);
 	}
 
 	/**
@@ -32,7 +34,6 @@ class ContainerAdapter implements ContainerInterface {
 	 *
 	 * @param string $id Identifier of the entry to look for.
 	 *
-	 * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
 	 * @throws ContainerExceptionInterface Error while retrieving the entry.
 	 *
 	 * @return mixed Entry.
@@ -40,14 +41,8 @@ class ContainerAdapter implements ContainerInterface {
 	public function get(string $id): mixed {
 		try {
 			return $this->container->get($id);
-		} catch (DependencyCouldNotBeInstantiated $e) {
-			throw new NotFoundExceptionAdapter($e);
-		} catch (ContainerException $e) {
+		} catch (Throwable $e) {
 			throw new ContainerExceptionAdapter($e);
 		}
-	}
-
-	public function __call($name, $arguments) {
-		return $this->container->$name(...$arguments);
 	}
 }
