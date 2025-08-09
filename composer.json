@@ -8,7 +8,8 @@
         "psr/container": "^2.0",
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^3.0",
-        "tempest/container": "^1.5"
+        "tempest/container": "^1.5",
+        "tempest/core": "*"
     },
     "require-dev": {
         "tempest/framework": "*",
